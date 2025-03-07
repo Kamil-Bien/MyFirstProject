@@ -1,1 +1,1 @@
-﻿// test gitHuba do projektu
+﻿//główny program
