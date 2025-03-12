@@ -11,7 +11,7 @@
             void AddReviewPoints(decimal numberOfPionts);
             void AddReviewPoints(int numberOfPionts);
             
-            //Statistics GetStatistics();
+            Statistics GetStatistics();
         
     }
 }
