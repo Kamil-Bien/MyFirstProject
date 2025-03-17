@@ -129,8 +129,70 @@ while (true) //pętla głównego menu
 
         case var x when x == "2":
             ///////////////////////////////////////////////////////////////////////////opcja 2 - statystyki dla wybranej gry
-            break;
-        
+            while (input != "b" && input != "B") //pętla wyboru gry z listy
+            {
+                Console.WriteLine("Wybierz gre dla której chcesz wyświetlić statystyki");
+                Console.WriteLine("METODA LISTA GIER");
+
+                input = Console.ReadLine();
+
+                if (int.TryParse(input, out int selectedGameNumber))
+                {
+                    selectedGameNumber--; // ze względu na różnice w wyborze z zakresu od 1, a indeksowością listy(od 0)
+                    if (selectedGameNumber >= 0 && selectedGameNumber < GamesList.Count)
+                    {
+                        float FinalStatisticalSummary = 0;
+                        int CounterForSucessGettingStatistics = 0;
+                        foreach (var TopicOfReviev in TopicsOfRevievList)
+                        {
+                            GamesList[selectedGameNumber].FileSelection(TopicOfReviev);
+                            
+                            try
+                            {
+                                var statistics = GamesList[selectedGameNumber].GetStatistics();
+                                Console.WriteLine();
+                                Console.WriteLine($"Średnia wartość ocen dla gry: {GamesList[selectedGameNumber].BoardGameName} w kategorii {TopicOfReviev} wynosi {statistics.Average:N2}pkt");
+                                FinalStatisticalSummary += statistics.Average;
+                                CounterForSucessGettingStatistics++;
+                            }
+                            catch (Exception toJestTymczasowaZmienna)
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine($"Wykryto wyjątek dla {GamesList[selectedGameNumber].BoardGameName} w kategorii {TopicOfReviev} : {toJestTymczasowaZmienna.Message}");
+                            }
+                                                        
+                        }
+
+                        if (CounterForSucessGettingStatistics > 0)
+                        {
+                            var FinalAverage = FinalStatisticalSummary / CounterForSucessGettingStatistics;
+                            Console.WriteLine($"Średnia wartość ocey końcowej dla gry: {GamesList[selectedGameNumber].BoardGameName} wynosi {FinalAverage:N2}pkt");
+                        }
+                        else if (CounterForSucessGettingStatistics == 0)
+                        {
+                            Console.WriteLine("Niestety wskazana gra nie posiada jeszcze żadnych ocen");
+                        }
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Próba wybrania gry z poza listy");
+                        Console.WriteLine("Spróbuj ponownie");
+                        Console.WriteLine();
+                    }
+                }
+                else if ((input == "b") || (input == "B"))
+                {
+                    //do nothing, nastąpi wyjście z pętli while
+                }
+                else
+                {
+                    Console.WriteLine("Błąd rzutowania zmiennej. Wprowadzone dane muszą być liczbą całkowitą");
+                    Console.WriteLine("Spróbuj ponownie wg poniższej instrukcji");
+                }
+            }
+                break;
+
         default:
             break;
 

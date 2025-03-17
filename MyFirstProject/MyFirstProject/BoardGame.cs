@@ -40,6 +40,7 @@
         {
             if (File.Exists(CurrentFileName))
             {
+                PointsList.Clear(); //czyszczenie listy do ponownego użytku
                 using (var reader = File.OpenText(CurrentFileName))
                 {
                     var line = reader.ReadLine();
@@ -68,7 +69,7 @@
             }
             else
             {
-                throw new Exception("Ten pracownik nie ma żadnych ocen");
+                throw new Exception("brak ocen");
             }
         }
     }
