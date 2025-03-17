@@ -4,17 +4,15 @@ void EmployeeGradeAdded(object sender, EventArgs args)
     Console.WriteLine("Dodano nową ocenę");
 }
 MenuSupport MenuSupport = new MenuSupport();
-//tworzenie nowych obiektów (pracowników) korzystając z klasy Employee
+
 var BoardGame0 = new BoardGame("Osadnicy Catanu");
 var BoardGame1 = new BoardGame("Wsiąść do pociągu");
 var BoardGame2 = new BoardGame("Potwory w Tokio");
 var BoardGame3 = new BoardGame("Władca Pierścieni - Konfrontacja");
 var BoardGame4 = new BoardGame("Dixit");
 
-//worker1.GradeAdded += EmployeeGradeAdded;
-
 List<BoardGame> GamesList = new List<BoardGame>();
-
+//Lista Gier do oceny
 GamesList.Add(BoardGame0);
 GamesList.Add(BoardGame1);
 GamesList.Add(BoardGame2);
@@ -23,14 +21,14 @@ GamesList.Add(BoardGame4);
 
 
 List<string> TopicsOfRevievList = new List<string>();
-
+//Lista ocenianych aspektów
 TopicsOfRevievList.Add("Replayability");
 TopicsOfRevievList.Add("TechnicalMatters");
 TopicsOfRevievList.Add("SubjectiveFun");
 
 
 Console.WriteLine("(Jeżeli chcesz odrazu zakończyć wciśnij Q a następnie ENTER)");
-while (true)
+while (true) //pętla głównego menu
 {
     Console.WriteLine("METODA MENU");
     var input = Console.ReadLine();
@@ -47,7 +45,7 @@ while (true)
         case var x when x == "1":
 
 
-            while (input != "b" && input != "B")
+            while (input != "b" && input != "B") //pętla wyboru gry z listy
             {
                 Console.WriteLine("Wybierz gre którą chcesz ocenić");
                 Console.WriteLine("METODA LISTA GIER");
@@ -57,61 +55,46 @@ while (true)
 
                 if (int.TryParse(input, out int selectedGameNumber))
                 {
-                    selectedGameNumber--; // ze względu na różnice w wyborze z zakresu od 1, a indeksowością listy
-                    if (selectedGameNumber >= 0 && selectedGameNumber <= GamesList.Count)
+                    selectedGameNumber--; // ze względu na różnice w wyborze z zakresu od 1, a indeksowością listy(od 0)
+                    if (selectedGameNumber >= 0 && selectedGameNumber < GamesList.Count)
                     {
-                        while (input != "b" && input != "B")
+                        while (input != "b" && input != "B") // pętla wybrou ocenianej kategorii
                         {
 
                             Console.WriteLine("Wybierz kategorię oceny");
                             Console.WriteLine("METODA LISTA KATEGORII");
                             input = Console.ReadLine();
-                            var AddPiontsFlag = true;
+                            //var AddPiontsFlag = true;
 
-
-                            switch (input)
+                            if (int.TryParse(input, out int selectedTopicOfReview))
                             {
-                                case var y when y == "X" || y == "x":
-                                    GamesList[selectedGameNumber].FileSelection("Replayability");
-                                    break;
-
-                                case var y when y == "Y" || y == "y":
-                                    GamesList[selectedGameNumber].FileSelection("TechnicalMatters");
-                                    break;
-
-                                case var y when y == "Z" || y == "z":
-                                    GamesList[selectedGameNumber].FileSelection("SubjectiveFun");
-                                    break;
-
-                                default:
-                                    AddPiontsFlag = false;
-                                    break;
-                            }
-
-                            if (AddPiontsFlag)
-                            {
-                                do
+                                selectedTopicOfReview--; // ze względu na różnice w wyborze z zakresu od 1, a indeksowością listy(od 0)
+                                if (selectedTopicOfReview >= 0 && selectedTopicOfReview <= TopicsOfRevievList.Count)
                                 {
-                                    Console.WriteLine("Podaj ocenę mieszczącą się w zakresie od 1 do 10 ((B) - powrót do głównego MENU)");
-                                    input = Console.ReadLine();
-
-                                    if (input != "b" && input != "B")
+                                    GamesList[selectedGameNumber].FileSelection(TopicsOfRevievList[selectedTopicOfReview]);
+                                    do //pętla dodania oceny do wybranej wcześniej gry i kategorii
                                     {
-                                        try
-                                        {
-                                            GamesList[selectedGameNumber].AddReviewPoints(input);
-                                            input = "B";
-                                            break;
-                                        }
-                                        catch (Exception toJestTymczasowaZmienna)
-                                        {
-                                            Console.WriteLine($"Wykryto wyjątek: {toJestTymczasowaZmienna.Message}");
-                                            Console.WriteLine("Spróbój ponownie");
-                                            Console.WriteLine();
-                                        }
-                                    }
+                                        Console.WriteLine("Podaj ocenę mieszczącą się w zakresie od 1 do 10 ((B) - powrót do głównego MENU)");
+                                        input = Console.ReadLine();
 
-                                } while (input != "b" && input != "B");
+                                        if (input != "b" && input != "B")
+                                        {
+                                            try
+                                            {
+                                                GamesList[selectedGameNumber].AddReviewPoints(input);
+                                                input = "B";
+                                                break;
+                                            }
+                                            catch (Exception toJestTymczasowaZmienna)
+                                            {
+                                                Console.WriteLine($"Wykryto wyjątek: {toJestTymczasowaZmienna.Message}");
+                                                Console.WriteLine("Spróbój ponownie");
+                                                Console.WriteLine();
+                                            }
+                                        }
+
+                                    } while (input != "b" && input != "B");
+                                }
                             }
                             else if ((input == "b") || (input == "B"))
                             {
