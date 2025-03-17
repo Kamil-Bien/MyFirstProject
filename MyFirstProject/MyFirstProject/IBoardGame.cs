@@ -6,6 +6,7 @@
 
             //event GradeAddedDelegate GradeAdded;
 
+            void FileSelection(string subjectName);
             void AddReviewPoints(float numberOfPionts);
             void AddReviewPoints(string numberOfPionts);
             void AddReviewPoints(decimal numberOfPionts);

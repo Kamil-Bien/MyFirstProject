@@ -15,6 +15,8 @@
 
         //public abstract event ReviewAddedDelegate ReviewAdded;
 
+        public abstract void FileSelection(string subjectName);
+
         public abstract void AddReviewPoints(float numberOfPionts);
 
         public void AddReviewPoints(string numberOfPionts)

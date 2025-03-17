@@ -4,15 +4,21 @@
     {
         // public override event GradeAddedDelegate GradeAdded;
 
-        private string CurrentFileName = "plikTestowy.txt";
+        private string CurrentFileName;
+        //private string TopicOfReview; - najprawdopodbniej do usunięcia
         public BoardGame(string name) //konstruktor
             : base(name)
         {
         }
-      
+
+        public override void FileSelection(string topicName)
+        {
+            CurrentFileName = this.BoardGameName + " - " + topicName + ".txt";
+        }
+
         public override void AddReviewPoints(float numberOfPionts)
         {
-            if (numberOfPionts >= 0 && numberOfPionts <= 10)
+            if (numberOfPionts >= 1 && numberOfPionts <= 10)
             {
                 using (var writer = File.AppendText(CurrentFileName))
                 {
@@ -29,7 +35,7 @@
                 throw new Exception("Podana liczba musi znajdować się w zakresie 0-10");
             }
         }
-        private List<float> score = new List<float>();
+        private List<float> PointsList = new List<float>();
         public override Statistics GetStatistics()
         {
             if (File.Exists(CurrentFileName))
@@ -40,7 +46,7 @@
                     while (line != null)
                     {
                         var singleValue = float.Parse(line);
-                        score.Add(singleValue);
+                        PointsList.Add(singleValue);
                         line = reader.ReadLine();
                     }
                 }
@@ -52,7 +58,7 @@
 
             var statistics = new Statistics();
 
-            foreach (var item in this.score)
+            foreach (var item in this.PointsList)
             {
                 statistics.CalculatePointsFromList(item);
             }
