@@ -2,7 +2,7 @@
 {
     public class BoardGame : BoardGameBase
     {
-        // public override event GradeAddedDelegate GradeAdded;
+        public override event ReviewAddedDelegate ReviewAdded;
 
         private string CurrentFileName;
         //private string TopicOfReview; - najprawdopodbniej do usunięcia
@@ -25,10 +25,10 @@
                     writer.WriteLine(numberOfPionts);
                 }
 
-                //        if (ReviewAdded != null)
-                //        {
-                //            ReviewAdded(this, new EventArgs());
-                //        }
+                if (ReviewAdded != null)
+                {
+                    ReviewAdded(this, new EventArgs());
+                }
             }
             else
             {
@@ -72,5 +72,7 @@
                 throw new Exception("brak ocen");
             }
         }
+
+      
     }
 }

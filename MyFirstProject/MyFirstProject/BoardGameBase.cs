@@ -11,9 +11,9 @@
             this.BoardGameName = name;
         }
 
-        //public delegate void ReviewAddedDelegate(object sender, EventArgs args);
+        public delegate void ReviewAddedDelegate(object sender, EventArgs args);
 
-        //public abstract event ReviewAddedDelegate ReviewAdded;
+        public abstract event ReviewAddedDelegate ReviewAdded;
 
         public abstract void FileSelection(string subjectName);
 
