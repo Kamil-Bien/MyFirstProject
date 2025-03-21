@@ -41,6 +41,8 @@ TopicsOfRevievList.Add("Replayability");
 TopicsOfRevievList.Add("TechnicalMatters");
 TopicsOfRevievList.Add("SubjectiveFun");
 
+Console.Clear();
+MenuSupport.PressEnterToStartProgram();
 
 Console.Clear();
 while (true) //pętla głównego menu
@@ -64,6 +66,7 @@ while (true) //pętla głównego menu
             {
                 Console.WriteLine("Wybierz gre którą chcesz ocenić");
                 MenuSupport.GameList();
+                Console.WriteLine("B -> powrót do głónego menu");
 
                 input = Console.ReadLine();
 
@@ -76,22 +79,21 @@ while (true) //pętla głównego menu
                         Console.Clear();
                         while (input != "b" && input != "B") // pętla wybrou ocenianej kategorii
                         {
-                            Console.WriteLine();
                             Console.WriteLine("Wybierz kategorię oceny");
                             MenuSupport.TopicOfReviewList();
+                            Console.WriteLine("B -> powrót do głónego menu");
                             input = Console.ReadLine();
                             //var AddPiontsFlag = true;
 
                             if (int.TryParse(input, out int selectedTopicOfReview))
                             {
                                 selectedTopicOfReview--; // ze względu na różnice w wyborze z zakresu od 1, a indeksowością listy(od 0)
-                                if (selectedTopicOfReview >= 0 && selectedTopicOfReview <= TopicsOfRevievList.Count)
+                                if (selectedTopicOfReview >= 0 && selectedTopicOfReview < TopicsOfRevievList.Count)
                                 {
                                     Console.Clear();
                                     GamesList[selectedGameNumber].FileSelection(TopicsOfRevievList[selectedTopicOfReview]);
                                     do //pętla dodania oceny do wybranej wcześniej gry i kategorii
                                     {
-                                        Console.WriteLine();
                                         Console.WriteLine("Podaj ocenę mieszczącą się w zakresie od 1 do 10 ((B) - powrót do głównego MENU)");
                                         input = Console.ReadLine();
 
@@ -114,9 +116,16 @@ while (true) //pętla głównego menu
 
                                     } while (input != "b" && input != "B");
                                 }
+                                else
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("Wybrana przez Ciebie opcja nie istnieje lub jest nie dostępna. Spróbuj wybrać opcje z podanej listy");
+                                    Console.WriteLine();
+                                }
                             }
                             else if ((input == "b") || (input == "B"))
                             {
+                                Console.Clear();
                                 //do nothing, nastąpi wyjście z pętli while
                             }
                             else
@@ -137,6 +146,7 @@ while (true) //pętla głównego menu
                 }
                 else if((input == "b") || (input == "B"))
                 {
+                    Console.Clear();
                     //do nothing, nastąpi wyjście z pętli while
                 }
                 else
@@ -144,6 +154,7 @@ while (true) //pętla głównego menu
                     Console.Clear();
                     Console.WriteLine("Błąd rzutowania zmiennej. Wprowadzone dane muszą być liczbą całkowitą");
                     Console.WriteLine("Spróbuj ponownie wg poniższej instrukcji");
+                    Console.WriteLine();
                 }
 
             }
@@ -155,9 +166,9 @@ while (true) //pętla głównego menu
             ///////////////////////////////////////////////////////////////////////////opcja 2 - statystyki dla wybranej gry
             while (input != "b" && input != "B") //pętla wyboru gry z listy
             {
-                Console.WriteLine();
                 Console.WriteLine("Wybierz gre dla której chcesz wyświetlić statystyki");
                 MenuSupport.GameList();
+                Console.WriteLine("B -> powrót do głónego menu");
 
                 input = Console.ReadLine();
 
@@ -224,7 +235,7 @@ while (true) //pętla głównego menu
                                 ReapetFlag = false;
                             }
                         }
-
+                        Console.Clear();
 
 
                     }
@@ -238,6 +249,7 @@ while (true) //pętla głównego menu
                 }
                 else if ((input == "b") || (input == "B"))
                 {
+                    Console.Clear();
                     //do nothing, nastąpi wyjście z pętli while
                 }
                 else
@@ -248,6 +260,11 @@ while (true) //pętla głównego menu
                 }
             }
                 break;
+
+        case var x when x == "9":
+            MenuSupport.InfoOProgramie();
+            break;
+
 
         default:
             Console.Clear();
