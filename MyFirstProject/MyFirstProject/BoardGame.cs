@@ -5,8 +5,8 @@
         public override event ReviewAddedDelegate ReviewAdded;
 
         private string CurrentFileName;
-        //private string TopicOfReview; - najprawdopodbniej do usunięcia
-        public BoardGame(string name) //konstruktor
+        
+        public BoardGame(string name) 
             : base(name)
         {
         }

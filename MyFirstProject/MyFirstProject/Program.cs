@@ -66,7 +66,7 @@ while (true) //pętla głównego menu
             {
                 Console.WriteLine("Wybierz gre którą chcesz ocenić");
                 MenuSupport.GameList();
-                Console.WriteLine("B -> powrót do głónego menu");
+                Console.WriteLine("B -> powrót do głównego menu");
 
                 input = Console.ReadLine();
 
@@ -81,7 +81,7 @@ while (true) //pętla głównego menu
                         {
                             Console.WriteLine("Wybierz kategorię oceny");
                             MenuSupport.TopicOfReviewList();
-                            Console.WriteLine("B -> powrót do głónego menu");
+                            Console.WriteLine("B -> powrót do głównego menu");
                             input = Console.ReadLine();
                             //var AddPiontsFlag = true;
 
@@ -119,7 +119,7 @@ while (true) //pętla głównego menu
                                 else
                                 {
                                     Console.Clear();
-                                    Console.WriteLine("Wybrana przez Ciebie opcja nie istnieje lub jest nie dostępna. Spróbuj wybrać opcje z podanej listy");
+                                    Console.WriteLine("Wybrana przez Ciebie opcja nie istnieje lub jest niedostępna. Spróbuj wybrać opcje z podanej listy");
                                     Console.WriteLine();
                                 }
                             }
@@ -131,7 +131,7 @@ while (true) //pętla głównego menu
                             else
                             {
                                 Console.Clear();
-                                Console.WriteLine("Wybrana przez Ciebie opcja nie istnieje lub jest nie dostępna. Spróbuj wybrać opcje z podanej listy");
+                                Console.WriteLine("Wybrana przez Ciebie opcja nie istnieje lub jest niedostępna. Spróbuj wybrać opcje z podanej listy");
                                 Console.WriteLine();
                             }
                         }
@@ -163,12 +163,12 @@ while (true) //pętla głównego menu
 
         case var x when x == "2":
             Console.Clear();
-            ///////////////////////////////////////////////////////////////////////////opcja 2 - statystyki dla wybranej gry
+            //opcja 2 - statystyki dla wybranej gry
             while (input != "b" && input != "B") //pętla wyboru gry z listy
             {
                 Console.WriteLine("Wybierz gre dla której chcesz wyświetlić statystyki");
                 MenuSupport.GameList();
-                Console.WriteLine("B -> powrót do głónego menu");
+                Console.WriteLine("B -> powrót do głównego menu");
 
                 input = Console.ReadLine();
 
@@ -262,6 +262,7 @@ while (true) //pętla głównego menu
                 break;
 
         case var x when x == "9":
+            Console.Clear();
             MenuSupport.InfoOProgramie();
             break;
 

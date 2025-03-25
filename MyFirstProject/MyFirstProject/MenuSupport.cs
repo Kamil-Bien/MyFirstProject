@@ -50,7 +50,7 @@
             Console.WriteLine("Każdą z tych gier można ocenić w następujących kategoriach:");
             TopicOfReviewList();
             Console.WriteLine();
-            Console.WriteLine("Ponadto program pozwala na wyświetlenie średniej ocen z każdej kategori");
+            Console.WriteLine("Ponadto program pozwala na wyświetlenie średniej ocen z każdej kategorii");
             Console.WriteLine("a także wskazuje ogólną średnią ocenę gry wyliczaną na podstawie średnich wartości powyższych kategorii.");
             Console.WriteLine("Jeżeli dana gra nie będzie miała ocen w danej kategorii to progam wyliczy średnią na podstawie dostępnych ocen");
             Console.WriteLine();

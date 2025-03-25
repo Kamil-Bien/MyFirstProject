@@ -1,10 +1,12 @@
-﻿namespace MyFirstProject
+﻿using static MyFirstProject.BoardGameBase;
+
+namespace MyFirstProject
 {
     internal interface IBoardGame
     {
             string BoardGameName { get; }
 
-            //event GradeAddedDelegate GradeAdded;
+            event ReviewAddedDelegate ReviewAdded;
 
             void FileSelection(string subjectName);
             void AddReviewPoints(float numberOfPionts);
